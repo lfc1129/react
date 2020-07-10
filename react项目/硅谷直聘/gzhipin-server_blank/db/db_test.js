@@ -54,7 +54,6 @@ function testSave() {
 function testFind() {
     // 查找多个
     UserModel.find(function (err, users) { // 如果有匹配返回的是一个[user, user..], 如果
-        没有一个匹配的返回[]
         console.log('find() ', err, users)
     })
     // 查找一个

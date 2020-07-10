@@ -57,6 +57,7 @@ export function register({
         return errorMsg('密码和确认密码不同')
     }
     return async dispatch => {
+        console.log(this.state)
         // 异步 ajax 请求, 得到响应
         const response = await reqRegister({
             username,
@@ -147,7 +148,7 @@ export const getUserList = (type) => {
 */
 function initIO(dispatch, userid) {
     if (!io.socket) {
-        io.socket = io('ws://localhost:4000')
+        io.socket = io('ws://localhost:4001')
         io.socket.on('receiveMsg', (chatMsg) => {
             if (chatMsg.from === userid || chatMsg.to === userid) {
                 dispatch(receiveMsg(chatMsg, userid))

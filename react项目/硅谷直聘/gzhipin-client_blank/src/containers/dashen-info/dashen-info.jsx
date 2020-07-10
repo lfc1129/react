@@ -23,6 +23,7 @@ class DashenInfo extends Component {
         this.props.updateUser(this.state)
     }
     render() {
+        console.log(this.props)
         // 如果信息已经完善, 自动重定向到对应主界面
         const {header, type} = this.props.user
         if(header) { // 说明信息已经完善

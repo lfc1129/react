@@ -24,11 +24,13 @@ class LaobanInfo extends Component {
         this.setState({ header })
     }
     render() {
-        const { user } = this.props
-        // 如果用户信息已完善, 自动跳转到 laoban 主界面
-        if (user.header) {
-            return <Redirect to='/laoban' />
-        }
+        
+         // 如果信息已经完善, 自动重定向到对应主界面
+         const {header, type} = this.props.user
+         if(header) { // 说明信息已经完善
+         const path = type==='dashen' ? '/dashen' : '/laoban'
+         return <Redirect to={path}/>
+         }
         return (
             <div>
                 <NavBar>老板信息完善</NavBar>

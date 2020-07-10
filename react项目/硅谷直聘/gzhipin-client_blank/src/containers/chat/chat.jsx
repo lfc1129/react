@@ -28,6 +28,12 @@ class Chat extends Component {
         // 更新显示列表
         window.scrollTo(0, document.body.scrollHeight)
     }
+    componentWillUnmount () { // 在退出之前
+      // 发请求更新消息的未读状态
+      const from = this.props.match.params.userid
+      const to = this.props.user._id
+      this.props.readMsg(from, to)
+    }
     handleSend = () => {
        // 收集数据
     const from = this.props.user._id

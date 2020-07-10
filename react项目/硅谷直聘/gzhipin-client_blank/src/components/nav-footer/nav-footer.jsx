@@ -11,30 +11,32 @@ const Item = TabBar.Item
 
 class NavFooter extends React.Component {
     static propTypes = {
-        navList: PropTypes.array.isRequired
+        navList: PropTypes.array.isRequired,
+        unReadCount: PropTypes.number.isRequired
     }
 
     render() {
-        // 当前请求的路径
-        const {pathname} = this.props.location
-        const navList = this.props.navList.filter(nav => !nav.hide) // 回调函数返回值为 true, 当前元素就会留下, 否则不留
+        let {navList, unReadCount} = this.props
+        navList = navList.filter(nav => !nav.hide) // 回调函数返回值为 true, 当前元素就会留下, 否则不留
+        const path = this.props.location.pathname // 请求的path
         return (
-            <TabBar>
-                {
-                    
-                    navList.map((nav, index) => (
-                        <Item key={nav.path}
-                            title={nav.text}
-                            icon={{ uri: require(`./imgs/${nav.icon}.png`) }}
-                            selectedIcon={{ uri: require(`./imgs/${nav.icon}-selected.png`) }}
-                            selected={pathname === nav.path}
-                            onPress={() => {
-                                this.props.history.replace(nav.path)
-                            }}
-                        />
-                    ))
-                }
-            </TabBar>
+          <TabBar>
+              {
+                  
+                  navList.map((nav) => (
+                      <Item key={nav.path}
+                          badge={nav.path==='/message' ? unReadCount : 0}
+                          title={nav.text}
+                          icon={{ uri: require(`./imgs/${nav.icon}.png`) }}
+                          selectedIcon={{ uri: require(`./imgs/${nav.icon}-selected.png`) }}
+                          selected={path === nav.path}
+                          onPress={() => {
+                              this.props.history.replace(nav.path)
+                          }}
+                      />
+                  ))
+              }
+          </TabBar>
         )
     }
 }

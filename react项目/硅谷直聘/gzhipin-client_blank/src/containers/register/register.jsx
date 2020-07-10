@@ -22,6 +22,15 @@ class Register extends Component {
         password2: '',
         type: 'dashen'
     }
+    // constructor(props){
+    //     super(props)
+    //     this.state={
+    //         username: '',
+    //         password: '',
+    //         password2: '',
+    //         type: 'dashen'
+    //     }
+    // }
     // 处理输入框/单选框变化, 收集数据到 state
     handleChange = (name, value) => {
         this.setState({ [name]: value })
